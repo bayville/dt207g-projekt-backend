@@ -14,11 +14,13 @@ app.use(cors({ methods: 'GET,PUT,POST,DELETE' }));
 
 //Import routes
 const users = require('./routes/userRouter.js');
-
+const categories = require('./routes/categoryRouter.js');
+const menuItems = require('./routes/menuItemRouter.js');
 
 //Routes
 app.use('/api/user', users);
-
+app.use('/api/category', categories);
+app.use('/api/menuitem', menuItems);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
