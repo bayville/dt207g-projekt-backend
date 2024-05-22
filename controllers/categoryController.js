@@ -36,16 +36,18 @@ const getOneCategory = async (req, res) => {
 const updateCategory = async (req, res) => {
 
     //Extracting the data from the request body
+    console.log(req.body);
     const itemInfo = {
         name: req.body.name,
         description: req.body.description,
         published: req.body.published,
         order: req.body.order,
     }
+
     return await updateItem(Model, itemInfo, req, res);
 }
 
-//Function to delete an existing menuitem
+//Function to delete an existing menu
 const deleteCategory = async (req, res) => {
     return await deleteItem(Model, req, res);
 }

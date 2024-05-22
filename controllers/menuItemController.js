@@ -18,11 +18,12 @@ const addMenuItem = async (req, res) => {
     const itemInfo = {
         name: req.body.name,
         price: req.body.price,
-        category: req.body.category,
+        categoryId: req.body.categoryId,
         description: req.body.description,
         published: req.body.published
     }
 
+    console.log(itemInfo);
     return await createItem(Model, itemInfo, req, res);
 }
 
@@ -54,10 +55,12 @@ const updateMenuItem = async (req, res) => {
     const itemInfo = {
         name: req.body.name,
         price: req.body.price,
-        category: req.body.category,
+        categoryId: req.body.categoryId,
         description: req.body.description,
         published: req.body.published
     }
+
+    console.log(itemInfo);
     return await updateItem(Model, itemInfo, req, res);
 }
 
