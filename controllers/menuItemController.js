@@ -66,6 +66,9 @@ const updateMenuItem = async (req, res) => {
 
 //Function to delete an existing menuItem
 const deleteMenuItem = async (req, res) => {
+    console.log(req.params.id);
+    // console.log(req.url);
+    // console.log(req.body.params);
     return await deleteItem(Model, req, res);
 }
 

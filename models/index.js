@@ -47,12 +47,13 @@ const models = {
 
 // Define associations
 
+defineAssociations(models);
 
 // Synchronize models with the database
 sequelize.sync({ force: false })
     .then(() => {
         console.log('Database re-sync completed.');
-        defineAssociations(models);
+
     })
     .catch(error => {
         console.error('Error syncing database:', error);

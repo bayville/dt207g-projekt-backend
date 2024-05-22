@@ -10,12 +10,12 @@ const defineAssociations = (models) => {
     Status.hasMany(Order, { foreignKey: 'statusId', as: 'orders' });
 
     // Order-OrderItem Association
-    Order.hasMany(OrderItem, { foreignKey: 'orderId', as: 'orderItems' });
-    OrderItem.belongsTo(Order, { foreignKey: 'orderId', as: 'order' });
+    Order.hasMany(OrderItem, { foreignKey: 'orderId', as: 'orderItems', onDelete: 'CASCADE' });
+    OrderItem.belongsTo(Order, { foreignKey: 'orderId', as: 'order', onDelete: 'CASCADE' });
 
     // OrderItem-MenuItem Association
-    OrderItem.belongsTo(MenuItem, { foreignKey: 'menuItemId', as: 'menuItems' });
-    MenuItem.hasMany(OrderItem, { foreignKey: 'menuItemId', as: 'orderItems' });
+    OrderItem.belongsTo(MenuItem, { foreignKey: 'menuItemId', as: 'menuItems', onDelete: 'CASCADE' });
+    MenuItem.hasMany(OrderItem, { foreignKey: 'menuItemId', as: 'orderItems',  onDelete: 'CASCADE' });
 
     // MenuItem-Category Association
     MenuItem.belongsTo(Category, { foreignKey: 'categoryId', as: 'category' });

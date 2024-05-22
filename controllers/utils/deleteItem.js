@@ -2,8 +2,10 @@
 
 const deleteItem = async (Model, req, res, ) => {
     try {
+        console.log(req.params.id);
         // Extracting the item ID from the request parameters
         const id = req.params.id;
+        console.log(id);
 
         // Finding the item by its ID
         const item = await Model.findByPk(id);
@@ -16,8 +18,8 @@ const deleteItem = async (Model, req, res, ) => {
         // Deleting the item from the database
         await item.destroy();
 
-        // Returning a success message as JSON response
-        return res.status(204).json({ message: `${Model.name} deleted successfully` });
+        // // Returning a success message as JSON response
+        // return res.status(204).json({ message: `${Model.name} deleted successfully` });
     } catch (error) {
         // Handling errors and sending a 500 status code with an error message
         console.error(`Error deleting ${Model.name.toLowerCase()}:`, error);
