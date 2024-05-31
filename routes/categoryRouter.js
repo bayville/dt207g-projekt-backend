@@ -5,7 +5,6 @@ const {authenticateToken} = require('../middlewares/auth');
 
 
 const express = require('express');
-// const { authenticateToken } = require('../middlewares/auth');
 const router = express.Router();
 
 
@@ -18,6 +17,5 @@ router.get('/protected/getAll', authenticateToken, categoryController.getAllCate
 router.post('/protected/', authenticateToken, categoryController.addCategory);
 router.delete('/protected/:id', authenticateToken, categoryController.deleteCategory);
 router.put('/protected/:id', authenticateToken, categoryController.updateCategory);
-
 
 module.exports = router;

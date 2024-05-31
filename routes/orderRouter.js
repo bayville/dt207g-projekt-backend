@@ -17,8 +17,8 @@ router.get('/getOrderStatus/:id', orderController.getOrderStatus);
 //Get, post, delete, put routes, requires Authentication
 router.get('/protected/getAll', authenticateToken, orderController.getAllOrders);
 router.post('/',  orderController.newOrder);
-// router.delete('/protected/:id', authenticateToken, menuItemController.deleteMenuItem);
-// router.put('/protected/:id', authenticateToken, menuItemController.updateMenuItem);
+router.delete('/protected/:id', authenticateToken, orderController.deleteOrder);
+router.put('/protected/:id', authenticateToken, orderController.updateOrder);
 router.put('/protected/status/:id', authenticateToken, orderController.updateOrderStatus);
 
 
