@@ -15,42 +15,26 @@ function validateUserFormInput() {
     ];
 }
 
+//Validate menuitem
+function validateMenuItemFormInput() {
+    return [
+        body('name').trim().notEmpty().escape().withMessage("Namn måste fyllas i"),
+        body('price').trim().notEmpty().isNumeric().escape().withMessage("Pris måste anges"),
+        body('categoryId').trim().notEmpty().isInt().escape().withMessage("Kategori-ID måste anges"),
+        body('description').trim().escape(),
+    ];
+}
 //Validate id param
 function validateId(){
     return[ param('id').notEmpty().isInt().withMessage("Id måste vara ett heltal") ]
 }
 
-function validateWorkForm() {
+// Validate category input
+function validateCategoryInput() {
     return [
-        // Validate starttime
-        body('startTime')
-            .notEmpty().withMessage('Starttid får inte vara tom')
-            .isISO8601().withMessage('Starttid måste vara i ett giltigt datumformat')
-            .custom((value, { req }) => {
-                // Check if starttime is in the future
-                if (new Date(value) > new Date()) {
-                    throw new Error('Starttiden kan inte ligga i framtiden');
-                }
-                return true;
-            }),
-
-        // Validate enddtime
-        body('endTime')
-            .notEmpty().withMessage('Sluttid får inte vara tom')
-            .isISO8601().withMessage('Sluttid måste vara i ett giltigt datumformat')
-            .custom((value, { req }) => {
-                // Check if endtime is before starttime
-                if (new Date(value) < new Date(req.body.startTime)) {
-                    throw new Error('Sluttiden kan inte vara före starttiden');
-                }
-
-                // Check if endttime is in the future
-                if (new Date(value) > new Date()) {
-                    throw new Error('Sluttiden kan inte ligga i framtiden');
-                }
-
-                return true;
-            })
+        body('name').trim().notEmpty().withMessage("Namnet måste fyllas i"),
+        body('description').notEmpty().trim().escape(),
+        body('order').isInt({ min: 0 }).withMessage("Order måste vara ett positivt heltal"),
     ];
 }
 
@@ -58,6 +42,7 @@ function validateWorkForm() {
 // Check validation errors and return errors
 function checkValidationResult(req, res, next) {
     const errors = validationResult(req);
+    console.log("errors", errors);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
@@ -65,4 +50,4 @@ function checkValidationResult(req, res, next) {
 }
 
 // Exportera moduler
-module.exports = { validateUserFormInput, validateWorkForm, validateId, checkValidationResult };
+module.exports = { validateUserFormInput, validateCategoryInput, validateId, validateMenuItemFormInput, checkValidationResult };

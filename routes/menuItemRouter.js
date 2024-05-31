@@ -1,5 +1,6 @@
 // import category
 const menuItemController = require('../controllers/menuItemController');
+const {validateId, validateMenuItemFormInput, checkValidationResult} = require('../middlewares/validation')
 
 
 const express = require('express');
@@ -13,9 +14,9 @@ router.get('/:id', menuItemController.getOneMenuItem);
 
 //Get, post, delete, put routes, requires Authentication
 router.get('/protected/getAll', authenticateToken, menuItemController.getAllMenuItems);
-router.post('/protected/', authenticateToken, menuItemController.addMenuItem);
-router.delete('/protected/:id', authenticateToken, menuItemController.deleteMenuItem);
-router.put('/protected/:id', authenticateToken, menuItemController.updateMenuItem);
+router.post('/protected/', authenticateToken,[validateMenuItemFormInput(), checkValidationResult], menuItemController.addMenuItem);
+router.delete('/protected/:id', authenticateToken, [validateId(), checkValidationResult], menuItemController.deleteMenuItem);
+router.put('/protected/:id', authenticateToken, [validateId(), validateMenuItemFormInput(), checkValidationResult], menuItemController.updateMenuItem);
 
 
 module.exports = router;

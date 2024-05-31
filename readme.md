@@ -14,6 +14,8 @@ git clone https://github.com/bayville/dt207g-projekt-backend.git
 npm install
 ```
 
+## ER-Diagram databas
+![ER-diagram för databas](./Restuarant%20DB.drawio.png)
 
 ## API-struktur
 
