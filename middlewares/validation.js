@@ -38,7 +38,11 @@ function validateCategoryInput() {
     ];
 }
 
-
+function validateDayFormInput() {
+    return [
+        body('day').trim().notEmpty().withMessage("Dag måste fyllas i").isLength({ max: 20 }).withMessage("Dag får inte vara längre än 20 tecken").escape()
+    ]
+}
 // Check validation errors and return errors
 function checkValidationResult(req, res, next) {
     const errors = validationResult(req);
@@ -50,4 +54,4 @@ function checkValidationResult(req, res, next) {
 }
 
 // Exportera moduler
-module.exports = { validateUserFormInput, validateCategoryInput, validateId, validateMenuItemFormInput, checkValidationResult };
+module.exports = { validateUserFormInput, validateCategoryInput,validateDayFormInput, validateId, validateMenuItemFormInput, checkValidationResult };

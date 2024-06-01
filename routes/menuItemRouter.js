@@ -1,4 +1,4 @@
-// import category
+// import menuitemcontroller
 const menuItemController = require('../controllers/menuItemController');
 const {validateId, validateMenuItemFormInput, checkValidationResult} = require('../middlewares/validation')
 

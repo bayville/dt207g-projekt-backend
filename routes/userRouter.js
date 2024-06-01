@@ -1,4 +1,4 @@
-// import menu
+// import usercontroller
 const userController = require('../controllers/userController');
 const {validateUserFormInput, checkValidationResult} = require('../middlewares/validation')
 

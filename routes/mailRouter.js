@@ -1,4 +1,4 @@
-// import category
+// import mailcontroller
 const mailController = require('../controllers/mailController');
 
 

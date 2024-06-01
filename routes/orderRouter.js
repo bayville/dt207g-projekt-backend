@@ -1,4 +1,4 @@
-// import category
+// import order and statuscontroller
 const orderController = require('../controllers/orderController');
 const statusController = require('../controllers/statusController');
 

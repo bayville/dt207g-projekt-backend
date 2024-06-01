@@ -1,11 +1,9 @@
-// import category
+// import openhours controller
 const openHoursController = require('../controllers/openHoursController');
-
 const {authenticateToken} = require('../middlewares/auth');
-
+const {validateId, validateDayFormInput, checkValidationResult} = require('../middlewares/validation')
 
 const express = require('express');
-// const { authenticateToken } = require('../middlewares/auth');
 const router = express.Router();
 
 
@@ -14,8 +12,8 @@ router.get('/getAll', openHoursController.getAllDays);
 router.get('/:id', openHoursController.getOneDay);
 
 //Get, post, delete put routes, requires Authentication
-router.put('/protected/:id', authenticateToken, openHoursController.updateDay);
-router.post('/protected/', authenticateToken, openHoursController.addDay);
+router.put('/protected/:id', authenticateToken, [validateId(), validateDayFormInput(), checkValidationResult], openHoursController.updateDay);
+router.post('/protected/', authenticateToken, [validateDayFormInput(), checkValidationResult], openHoursController.addDay);
 
 
 module.exports = router;

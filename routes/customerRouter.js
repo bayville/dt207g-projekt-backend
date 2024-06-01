@@ -1,7 +1,5 @@
-// import category
+// import customercontroller
 const customerController = require('../controllers/customerController');
-
-
 
 
 const express = require('express');
